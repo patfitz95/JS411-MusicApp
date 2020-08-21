@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isLoggedIn: true,
+      isLoggedIn: false,
     }
   }
 
@@ -27,17 +27,17 @@ class App extends Component {
     if (isLoggedIn) {
           page = <Dashboard/>;
         } else {
-          page = <div>
-            <TextField/>
-            <TextField/>
-            <Button onClick={this.logIn}>LOGIN</Button>
+          page = <div className="login">
+            <TextField className="margin20"/>
+            <TextField className="margin20"/>
+            <Button onClick={this.logIn} variant="contained" color="primary" >LOGIN</Button>
             </div>;
         }
 
      return( 
       <div className="App">
         <AppBar position="static">
-          <p>Sean &amp; Patricks Music App</p>
+          <h1 className="title">Sean &amp; Patricks Music App</h1>
         </AppBar>
 
         {page}

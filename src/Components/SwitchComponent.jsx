@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -27,28 +28,40 @@ export default function SwitchCard() {
   const classes = useStyles();
 
   const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
+    online: true,
   });
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
+  let content;
+  let mode;
+
+  if(state.online) {
+    content = "You are using Online Mode. Songs are available for streaming."
+    mode = "Online Mode"
+  }
+  else {
+    content = "You are Offline, toggle Online Mode to stream music."
+    mode = "Offline Mode"
+  }
+
 
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
+        <Typography className={classes.pos} color="textPrimary">
+          <h1>{mode}</h1>
+          <p>{content}</p>
         </Typography>
       </CardContent>
       
       <CardActions>
       <Switch
-        checked={state.checkedA}
+        checked={state.online}
         onChange={handleChange}
-        name="checkedA"
+        name="online"
         inputProps={{ 'aria-label': 'secondary checkbox' }}
       />
       </CardActions>

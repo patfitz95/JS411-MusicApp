@@ -24,19 +24,40 @@ const useStyles = makeStyles({
 
 export default function SliderCard() {
   const classes = useStyles();
+  
   const [value, setValue] = React.useState(30);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  let warning;
 
+  if(value >= 80) {
+    warning = 'Your music volume is at a level that might damage your ears.'
+  }
+  else {
+    warning = ''
+
+  }
+  
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography id="continuous-slider" gutterBottom>
-          Volume
+          <h1>Volume</h1>
+          <p>{warning}</p>
         </Typography>
       
-        <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
+        <Slider
+        onChange={handleChange}
+        defaultValue={value}
+        aria-labelledby="discrete-slider"
+        valueLabelDisplay="auto"
+        step={10}
+        marks
+        min={0}
+        max={100}
+      />
       </CardContent>
     </Card>
   );
